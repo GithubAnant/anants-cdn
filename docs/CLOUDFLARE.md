@@ -43,7 +43,27 @@ curl -I https://cdn.anants.studio/v1.0.0/media/images/placeholder.svg
 
 Expected: `200`, `cache-control: public, max-age=31536000, immutable`
 
-## 4. Production URLs
+## 4. Deploy the website (admin app)
+
+`cdn.anants.studio` serves **two things** on one domain:
+
+| Path | What |
+|------|------|
+| `/`, `/potato`, `/api/*` | Next.js admin app (proxied from Vercel) |
+| `/v1.0.0/<path>` | CDN assets (proxied from jsDelivr) |
+
+1. Deploy `admin/` to Vercel — use the default `*.vercel.app` URL only (no custom domain on Vercel).
+2. Set the worker origin:
+
+```bash
+cd workers
+npx wrangler secret put SITE_ORIGIN   # https://your-app.vercel.app
+npx wrangler deploy
+```
+
+3. Visit https://cdn.anants.studio
+
+## 5. Production asset URLs
 
 ```
 https://cdn.anants.studio/v1.0.0/media/images/logo.png

@@ -22,7 +22,9 @@ npm run dev
 
 Open http://localhost:3000 — admin lives at `/potato` (poke the potato 5× on `/` for the secret link).
 
-## Deploy to Vercel
+## Deploy to Vercel (origin for cdn.anants.studio)
+
+The **public URL** is `https://cdn.anants.studio`. The Cloudflare Worker proxies `/` and `/potato` here; do **not** attach `cdn.anants.studio` as a custom domain on Vercel.
 
 1. New Vercel project → root directory `admin`
 2. Env vars (same as `.env.example`):
@@ -31,7 +33,19 @@ Open http://localhost:3000 — admin lives at `/potato` (poke the potato 5× on 
    - `GITHUB_OWNER=GithubAnant`
    - `GITHUB_REPO=anants-cdn`
    - `CDN_BASE_URL=https://cdn.anants.studio`
-3. Add custom domain `cdn-admin.anants.studio` (or subdomain you prefer)
+3. Deploy — note the `*.vercel.app` URL (e.g. `https://anants-cdn-admin.vercel.app`)
+4. Point the worker at it:
+
+```bash
+cd workers
+npx wrangler secret put SITE_ORIGIN
+# paste: https://your-project.vercel.app
+npx wrangler deploy
+```
+
+5. Open https://cdn.anants.studio — potato landing at `/`, admin at `/potato`
+
+Assets still live at `https://cdn.anants.studio/v1.0.1/<path>` (jsDelivr → GitHub).
 
 ## Workflow
 
