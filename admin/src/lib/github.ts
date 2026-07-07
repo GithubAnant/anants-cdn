@@ -133,7 +133,7 @@ export async function listTags(config: GitHubConfig): Promise<string[]> {
   return data.map((t) => t.name).filter((n) => /^v\d+\.\d+\.\d+$/.test(n));
 }
 
-const ALLOWED_PREFIXES = ["media/", "projects/"];
+const ALLOWED_PREFIXES = ["media/", "assets/"];
 
 export function sanitizeRepoPath(input: string): string | null {
   const normalized = input.replace(/^\/+/, "").replace(/\\/g, "/");

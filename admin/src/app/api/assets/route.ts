@@ -25,7 +25,7 @@ export async function GET() {
   const assets = Object.entries(manifest.assets).map(([key, asset]) => ({
     key,
     ...asset,
-    url: assetUrl(manifest.version, asset.path),
+    url: assetUrl(asset.path),
   }));
 
   return NextResponse.json({

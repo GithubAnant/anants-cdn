@@ -3,6 +3,9 @@ main = "cdn-proxy.ts"
 compatibility_date = "2024-01-01"
 workers_dev = true
 
+[vars]
+CDN_TAG = "v1.0.2"
+
 [[routes]]
 pattern = "cdn.anants.studio"
 custom_domain = true

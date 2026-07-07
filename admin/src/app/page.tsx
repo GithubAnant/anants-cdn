@@ -20,7 +20,7 @@ export default function HomePage() {
 
   useEffect(() => {
     setTagline(TAGLINES[Math.floor(Math.random() * TAGLINES.length)]);
-    fetch("https://cdn.anants.studio/v1.0.0/media/images/placeholder.svg", { method: "HEAD" })
+    fetch("https://cdn.anants.studio/assets/anant.png", { method: "HEAD" })
       .then((r) => setRipe(r.ok ? "ripe" : "raw"))
       .catch(() => setRipe("raw"));
   }, []);
@@ -69,7 +69,10 @@ export default function HomePage() {
 
         <div className={styles.urls}>
           <code className={styles.code}>
-            cdn.anants.studio/v1.0.0/media/images/placeholder.svg
+            cdn.anants.studio/assets/anant.png
+          </code>
+          <code className={styles.code}>
+            cdn.anants.studio/media/images/placeholder.svg
           </code>
         </div>
 

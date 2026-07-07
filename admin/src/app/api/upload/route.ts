@@ -22,25 +22,17 @@ export async function POST(request: Request) {
   const form = await request.formData();
   const file = form.get("file");
   const folder = String(form.get("folder") ?? "");
-  const projectName = sanitizeFileName(String(form.get("projectName") ?? ""));
   const alias = sanitizeFileName(String(form.get("alias") ?? ""));
 
   if (!(file instanceof File)) {
     return NextResponse.json({ error: "No file selected. Choose a file to upload." }, { status: 400 });
   }
 
-  let destFolder = folder;
-  if (folder === "projects") {
-    if (!projectName) {
-      return NextResponse.json({ error: "Project name required for project uploads." }, { status: 400 });
-    }
-    destFolder = `projects/${projectName}`;
-  }
-
+  const destFolder = folder;
   const safeName = sanitizeFileName(file.name);
   const repoPath = sanitizeRepoPath(`${destFolder}/${safeName}`);
   if (!repoPath) {
-    return NextResponse.json({ error: "Invalid path. Use media/ or projects/ only." }, { status: 400 });
+    return NextResponse.json({ error: "Invalid path. Use media/ or assets/ only." }, { status: 400 });
   }
 
   const buffer = Buffer.from(await file.arrayBuffer());

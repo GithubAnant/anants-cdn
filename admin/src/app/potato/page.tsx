@@ -35,7 +35,6 @@ export default function PotatoAdminPage() {
   const [password, setPassword] = useState("");
   const [data, setData] = useState<DashboardData | null>(null);
   const [folder, setFolder] = useState<string>(FOLDER_OPTIONS[0].value);
-  const [projectName, setProjectName] = useState("");
   const [alias, setAlias] = useState("");
   const [file, setFile] = useState<File | null>(null);
   const [version, setVersion] = useState("v1.0.1");
@@ -101,7 +100,6 @@ export default function PotatoAdminPage() {
     const form = new FormData();
     form.set("file", file);
     form.set("folder", folder);
-    form.set("projectName", projectName);
     form.set("alias", alias);
     const res = await fetch("/api/upload", { method: "POST", body: form });
     const json = (await res.json()) as { error?: string; path?: string };
@@ -273,21 +271,6 @@ export default function PotatoAdminPage() {
                 </select>
               </div>
 
-              {folder === "projects" && (
-                <div className={styles.field}>
-                  <label className={styles.label} htmlFor="project">
-                    Project Name
-                  </label>
-                  <input
-                    id="project"
-                    className={styles.input}
-                    value={projectName}
-                    onChange={(e) => setProjectName(e.target.value)}
-                    placeholder="githate"
-                  />
-                </div>
-              )}
-
               <div className={styles.field}>
                 <label className={styles.label} htmlFor="alias">
                   Manifest Alias (optional)
@@ -344,7 +327,8 @@ export default function PotatoAdminPage() {
           <h2 className={styles.sectionTitle}>Published Assets</h2>
           <div className={styles.assetsToolbar}>
             <p className={styles.sectionHint} style={{ margin: 0 }}>
-              URLs use pinned tag <span className={styles.mono}>v{data?.version}</span>
+              Public URLs omit version — worker pins tag{" "}
+              <span className={styles.mono}>v{data?.version}</span> server-side
             </p>
             <div className={styles.searchWrap}>
               <input
