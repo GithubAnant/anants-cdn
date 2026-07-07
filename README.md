@@ -28,6 +28,12 @@ https://cdn.jsdelivr.net/gh/GithubAnant/anants-cdn@v1.0.0/<path>
 3. Tag a release: `git tag v1.0.1 && git push origin v1.0.1`
 4. Reference the tagged URL in apps.
 
+## Admin dashboard
+
+Password-protected UI to upload files and publish versions — no manual git.
+
+See [`admin/README.md`](./admin/README.md). Deploy `admin/` to Vercel (e.g. `cdn-admin.anants.studio`).
+
 ## Custom domain (optional)
 
 Skip Cloudflare Workers — use the Vercel or Node proxy in [`proxy/`](./proxy/):

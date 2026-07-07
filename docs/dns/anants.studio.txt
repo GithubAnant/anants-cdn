@@ -1,0 +1,17 @@
+$ORIGIN anants.studio.
+$TTL 300
+
+@        IN  A       216.198.79.1
+www      IN  CNAME   4973e7a8b03bcfb1.vercel-dns-017.com.
+brainam  IN  CNAME   githubanant.github.io.
+capy     IN  CNAME   70995d1f0d23ff69.vercel-dns-017.com.
+claudefm IN  CNAME   882b7e9dea344565.vercel-dns-017.com.
+curt     IN  CNAME   aa7aeff2fa45a6de.vercel-dns-017.com.
+doomtcha IN  CNAME   f50589ee1655d5ec.vercel-dns-017.com.
+duel     IN  CNAME   githubanant.github.io.
+githate  IN  CNAME   372f1abe25572d37.vercel-dns-017.com.
+peeler   IN  CNAME   be2201045dceadeb.vercel-dns-017.com.
+plane    IN  CNAME   0d7331b809b0d225.vercel-dns-017.com.
+somnia   IN  CNAME   4177e676c8a56bc9.vercel-dns-017.com.
+toolss   IN  CNAME   42d29b89eb80dd58.vercel-dns-017.com.
+xapers   IN  CNAME   ea673b986834532a.vercel-dns-017.com.
