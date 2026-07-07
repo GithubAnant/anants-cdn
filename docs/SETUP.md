@@ -5,8 +5,7 @@
 `gh` auth was invalid in the environment that scaffolded this repo. Run locally:
 
 ```bash
-cd /Users/anantsinghal/Desktop/MusicBrain/anants-cdn
-git init -b main
+cd anants-cdn
 git add .
 git commit -m "Initial anants-cdn media repo scaffold"
 gh auth login   # if needed

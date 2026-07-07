@@ -7,6 +7,7 @@ Thumbs.db
 
 # Local tooling
 node_modules/
+.wrangler/
 
 # Accidental large exports — use Git LFS or releases for big binaries
 *.psd

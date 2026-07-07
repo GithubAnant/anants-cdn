@@ -21,15 +21,19 @@ Typical portfolio setup:
 | CNAME | `www` | `cname.vercel-dns.com` (or your Vercel target) |
 | A or CNAME | `@` | Vercel apex record from Vercel dashboard |
 
-## 2. Login and deploy
+## 2. Enable custom domain and deploy
+
+Uncomment the `[[routes]]` block in `workers/wrangler.toml`, then:
 
 ```bash
 cd workers
-npx wrangler login
+npx wrangler login   # local only — credentials stay in ~/.wrangler, never commit
 npx wrangler deploy
 ```
 
-`wrangler.toml` already sets `cdn.anants.studio` as custom domain. Deploy creates DNS + TLS automatically.
+Deploy creates `cdn.anants.studio` DNS + TLS once the zone is Active.
+
+Until then, the Worker runs on your `*.workers.dev` URL from the deploy output.
 
 ## 3. Test
 
