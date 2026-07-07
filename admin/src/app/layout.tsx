@@ -6,6 +6,9 @@ import "./globals.css";
 export const metadata: Metadata = {
   title: "CDN Admin — anants.studio",
   description: "Upload and publish media to cdn.anants.studio",
+  icons: {
+    icon: [{ url: "/icon.svg", type: "image/svg+xml" }],
+  },
 };
 
 const themeScript = `(function(){try{var t=localStorage.getItem("anants-cdn-theme")||"dark";document.documentElement.setAttribute("data-theme",t)}catch(e){document.documentElement.setAttribute("data-theme","dark")}})()`;
