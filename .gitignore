@@ -4,10 +4,15 @@ Thumbs.db
 *.swp
 .env
 .env.*
+!.env.example
+!**/.env.example
 
 # Local tooling
 node_modules/
+.next/
 .wrangler/
+admin/.env
+admin/.env.local
 
 # Accidental large exports — use Git LFS or releases for big binaries
 *.psd

@@ -1,16 +1,14 @@
 /**
- * Optional Cloudflare Worker: cdn.anants.studio → jsDelivr
+ * Cloudflare Worker: cdn.anants.studio → jsDelivr
  *
  * Deploy: wrangler deploy
- * Custom domain: cdn.anants.studio (Cloudflare dashboard)
- *
  * URL: https://cdn.anants.studio/v1.0.0/media/images/logo.png
  */
 const GITHUB_USER = "GithubAnant";
 const GITHUB_REPO = "anants-cdn";
 
 export default {
-  async fetch(request) {
+  async fetch(request: Request): Promise<Response> {
     const url = new URL(request.url);
     const parts = url.pathname.split("/").filter(Boolean);
 
@@ -50,4 +48,4 @@ export default {
       headers,
     });
   },
-};
+} satisfies ExportedHandler;

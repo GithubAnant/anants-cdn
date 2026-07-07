@@ -1,0 +1,93 @@
+/* Geist themes — vercel.com/design.md + design.dark.md */
+
+:root,
+[data-theme="dark"] {
+  color-scheme: dark;
+  --background-100: #000000;
+  --background-200: #0a0a0a;
+  --gray-1000: #ededed;
+  --gray-900: #a1a1a1;
+  --gray-700: #707070;
+  --gray-alpha-200: rgba(255, 255, 255, 0.06);
+  --gray-alpha-400: rgba(255, 255, 255, 0.12);
+  --blue-700: #47a8ff;
+  --red-800: #ff6b6b;
+  --green-800: #3dd68c;
+  --amber-800: #f5a524;
+  --radius: 6px;
+  --shadow-card: 0 1px 2px rgba(0, 0, 0, 0.16);
+  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, monospace;
+  --ease: cubic-bezier(0.175, 0.885, 0.32, 1.1);
+  --focus-ring: 0 0 0 2px #000000, 0 0 0 4px #47a8ff;
+  --toast-ok-bg: rgba(61, 214, 140, 0.12);
+  --toast-ok-border: rgba(61, 214, 140, 0.28);
+  --toast-ok-text: #8ef0b8;
+  --toast-error-bg: rgba(255, 107, 107, 0.12);
+  --toast-error-border: rgba(255, 107, 107, 0.28);
+  --toast-error-text: #ffb4b4;
+  --btn-disabled-bg: #1a1a1a;
+}
+
+[data-theme="light"] {
+  color-scheme: light;
+  --background-100: #ffffff;
+  --background-200: #fafafa;
+  --gray-1000: #000000;
+  --gray-900: #666666;
+  --gray-700: #8f8f8f;
+  --gray-alpha-200: rgba(0, 0, 0, 0.05);
+  --gray-alpha-400: rgba(0, 0, 0, 0.1);
+  --blue-700: #006bff;
+  --red-800: #dc2626;
+  --green-800: #0d9f6e;
+  --amber-800: #f59e0b;
+  --shadow-card: 0 2px 2px rgba(0, 0, 0, 0.04);
+  --focus-ring: 0 0 0 2px #ffffff, 0 0 0 4px #006bff;
+  --toast-ok-bg: #ecfdf5;
+  --toast-ok-border: #a7f3d0;
+  --toast-ok-text: #065f46;
+  --toast-error-bg: #fef2f2;
+  --toast-error-border: #fecaca;
+  --toast-error-text: #991b1b;
+  --btn-disabled-bg: #f2f2f2;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100%;
+  background: var(--background-100);
+  color: var(--gray-1000);
+  font-family: var(--font-sans);
+  font-size: 14px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  color: var(--blue-700);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+button,
+input,
+select {
+  font: inherit;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}

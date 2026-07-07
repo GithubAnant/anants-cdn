@@ -1,9 +1,8 @@
 name = "anants-cdn-proxy"
-main = "cdn-proxy.js"
+main = "cdn-proxy.ts"
 compatibility_date = "2024-01-01"
 workers_dev = true
 
-# Enable after anants.studio zone is Active in Cloudflare (see docs/CLOUDFLARE.md)
-# [[routes]]
-# pattern = "cdn.anants.studio"
-# custom_domain = true
+[[routes]]
+pattern = "cdn.anants.studio"
+custom_domain = true
