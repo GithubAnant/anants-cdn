@@ -1,0 +1,13 @@
+.DS_Store
+Thumbs.db
+*.tmp
+*.swp
+.env
+.env.*
+
+# Local tooling
+node_modules/
+
+# Accidental large exports — use Git LFS or releases for big binaries
+*.psd
+*.ai

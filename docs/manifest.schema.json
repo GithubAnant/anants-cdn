@@ -1,0 +1,30 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Anants CDN manifest",
+  "type": "object",
+  "required": ["version", "baseUrl", "assets"],
+  "properties": {
+    "version": {
+      "type": "string",
+      "description": "Manifest version; should match the latest git tag when publishing"
+    },
+    "baseUrl": {
+      "type": "string",
+      "format": "uri",
+      "description": "jsDelivr base URL without @version suffix"
+    },
+    "assets": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "required": ["path"],
+        "properties": {
+          "path": { "type": "string" },
+          "alt": { "type": "string" },
+          "width": { "type": "integer" },
+          "height": { "type": "integer" }
+        }
+      }
+    }
+  }
+}

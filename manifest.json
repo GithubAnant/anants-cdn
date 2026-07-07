@@ -1,0 +1,6 @@
+{
+  "$schema": "./docs/manifest.schema.json",
+  "version": "1.0.0",
+  "baseUrl": "https://cdn.jsdelivr.net/gh/GithubAnant/anants-cdn",
+  "assets": {}
+}

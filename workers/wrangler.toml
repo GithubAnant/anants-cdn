@@ -1,0 +1,6 @@
+name = "anants-cdn-proxy"
+main = "cdn-proxy.js"
+compatibility_date = "2024-01-01"
+
+# Uncomment after adding custom domain in Cloudflare dashboard:
+# routes = [{ pattern = "cdn.anants.studio", custom_domain = true }]
