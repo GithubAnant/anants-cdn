@@ -7,7 +7,7 @@
  */
 const GITHUB_USER = "GithubAnant";
 const GITHUB_REPO = "anants-cdn";
-const DEFAULT_CDN_TAG = "v1.0.2";
+const DEFAULT_CDN_TAG = "v1.0.3";
 
 /** Matches /v1.0.0/... for explicit version pinning */
 const VERSIONED_CDN_PATH = /^\/v\d+\.\d+\.\d+(?:\/|$)/;
