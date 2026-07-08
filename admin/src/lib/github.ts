@@ -116,6 +116,47 @@ export async function createTag(config: GitHubConfig, tag: string, sha: string):
   }
 }
 
+export async function listRepoPaths(
+  config: GitHubConfig,
+  prefixes: string[],
+  ref?: string,
+): Promise<string[]> {
+  const commitSha = ref ? ref : await getLatestCommitSha(config);
+  const commitUrl = `https://api.github.com/repos/${config.owner}/${config.repo}/git/commits/${commitSha}`;
+  const commitRes = await fetch(commitUrl, {
+    headers: {
+      Accept: "application/vnd.github+json",
+      Authorization: `Bearer ${config.token}`,
+      "X-GitHub-Api-Version": "2022-11-28",
+    },
+    cache: "no-store",
+  });
+  if (!commitRes.ok) {
+    throw new Error(`GitHub commit tree lookup failed: ${commitRes.status}`);
+  }
+  const commit = (await commitRes.json()) as { tree: { sha: string } };
+
+  const treeUrl = `https://api.github.com/repos/${config.owner}/${config.repo}/git/trees/${commit.tree.sha}?recursive=1`;
+  const treeRes = await fetch(treeUrl, {
+    headers: {
+      Accept: "application/vnd.github+json",
+      Authorization: `Bearer ${config.token}`,
+      "X-GitHub-Api-Version": "2022-11-28",
+    },
+    cache: "no-store",
+  });
+  if (!treeRes.ok) {
+    throw new Error(`GitHub tree listing failed: ${treeRes.status}`);
+  }
+  const tree = (await treeRes.json()) as { tree: Array<{ type: string; path: string }> };
+
+  return tree.tree
+    .filter((item) => item.type === "blob")
+    .map((item) => item.path)
+    .filter((path) => prefixes.some((prefix) => path.startsWith(prefix)))
+    .sort();
+}
+
 export async function listTags(config: GitHubConfig): Promise<string[]> {
   const response = await fetch(
     `https://api.github.com/repos/${config.owner}/${config.repo}/tags?per_page=100`,

@@ -342,7 +342,7 @@ export default function PotatoAdminPage() {
             </div>
           </div>
           {!data?.assets.length ? (
-            <p className={styles.empty}>No manifest aliases yet. Upload with an alias or edit manifest.json.</p>
+            <p className={styles.empty}>No assets in assets/ or media/ yet.</p>
           ) : filteredAssets.length === 0 ? (
             <p className={styles.empty}>No assets match “{search}”.</p>
           ) : (

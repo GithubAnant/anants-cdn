@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { isAuthenticated } from "@/lib/auth";
 import { assetUrl, parseManifest } from "@/lib/cdn";
-import { getGitHubConfig, getRepoFile, listTags } from "@/lib/github";
+import { getGitHubConfig, getRepoFile, listRepoPaths, listTags } from "@/lib/github";
 
 export async function GET() {
   if (!(await isAuthenticated())) {
@@ -22,11 +22,28 @@ export async function GET() {
   const manifest = parseManifest(JSON.parse(jsonText));
   const tags = await listTags(github);
 
-  const assets = Object.entries(manifest.assets).map(([key, asset]) => ({
-    key,
-    ...asset,
-    url: assetUrl(asset.path),
-  }));
+  const repoPaths = await listRepoPaths(github, ["assets/", "media/"]);
+  const aliasByPath = new Map(
+    Object.entries(manifest.assets).map(([key, asset]) => [asset.path, key]),
+  );
+  const seenPaths = new Set<string>();
+  const assets: Array<{ key: string; path: string; url: string; alt?: string; width?: number; height?: number }> = [];
+
+  for (const [key, asset] of Object.entries(manifest.assets)) {
+    assets.push({ key, ...asset, url: assetUrl(asset.path) });
+    seenPaths.add(asset.path);
+  }
+
+  for (const path of repoPaths) {
+    if (seenPaths.has(path)) continue;
+    assets.push({
+      key: aliasByPath.get(path) ?? path,
+      path,
+      url: assetUrl(path),
+    });
+  }
+
+  assets.sort((a, b) => a.path.localeCompare(b.path));
 
   return NextResponse.json({
     version: manifest.version,
