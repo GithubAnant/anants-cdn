@@ -57,7 +57,7 @@ Expected: `200`, `cache-control: public, max-age=31536000, immutable`
 
 ```bash
 cd workers
-npx wrangler secret put SITE_ORIGIN   # https://your-app.vercel.app
+npx wrangler secret put SITE_ORIGIN   # https://cdn-anants.vercel.app
 npx wrangler deploy
 ```
 

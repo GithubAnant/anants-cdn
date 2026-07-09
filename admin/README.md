@@ -33,13 +33,13 @@ The **public URL** is `https://cdn.anants.studio`. The Cloudflare Worker proxies
    - `GITHUB_OWNER=GithubAnant`
    - `GITHUB_REPO=anants-cdn`
    - `CDN_BASE_URL=https://cdn.anants.studio`
-3. Deploy — note the `*.vercel.app` URL (e.g. `https://anants-cdn-admin.vercel.app`)
+3. Deploy — note the `*.vercel.app` URL (e.g. `https://cdn-anants.vercel.app`)
 4. Point the worker at it:
 
 ```bash
 cd workers
 npx wrangler secret put SITE_ORIGIN
-# paste: https://your-project.vercel.app
+# paste: https://cdn-anants.vercel.app
 npx wrangler deploy
 ```
 

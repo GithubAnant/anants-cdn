@@ -19,7 +19,7 @@ const CDN_ASSET_PREFIX = /^\/(assets|media)(?:\/|$)/;
 const LEGACY_PORTFOLIO_PATH = /^\/projects\/portfolio(\/.*)?$/;
 
 interface Env {
-  /** Vercel deployment origin, e.g. https://anants-cdn-admin.vercel.app */
+  /** Vercel deployment origin, e.g. https://cdn-anants.vercel.app */
   SITE_ORIGIN?: string;
   /** jsDelivr git tag for clean asset URLs, e.g. v1.0.1 */
   CDN_TAG?: string;
