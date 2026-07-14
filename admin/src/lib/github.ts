@@ -154,6 +154,7 @@ export async function listRepoPaths(
     .filter((item) => item.type === "blob")
     .map((item) => item.path)
     .filter((path) => prefixes.some((prefix) => path.startsWith(prefix)))
+    .filter((path) => !path.split("/").some((part) => part.startsWith(".")))
     .sort();
 }
 
