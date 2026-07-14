@@ -42,6 +42,7 @@ export default function PotatoAdminPage() {
   const [message, setMessage] = useState<{ type: "ok" | "error"; text: string } | null>(null);
   const [drag, setDrag] = useState(false);
   const [search, setSearch] = useState("");
+  const [copiedUrl, setCopiedUrl] = useState<string | null>(null);
 
   const load = useCallback(async () => {
     const res = await fetch("/api/assets");
@@ -135,7 +136,10 @@ export default function PotatoAdminPage() {
 
   async function copyUrl(url: string) {
     await navigator.clipboard.writeText(url);
-    setMessage({ type: "ok", text: "URL copied" });
+    setCopiedUrl(url);
+    window.setTimeout(() => {
+      setCopiedUrl((current) => (current === url ? null : current));
+    }, 1600);
   }
 
   const filteredAssets =
@@ -372,11 +376,31 @@ export default function PotatoAdminPage() {
                     </td>
                     <td>
                       <button
-                        className={`${styles.btn} ${styles.btnSecondary} ${styles.copyBtn}`}
+                        className={`${styles.btn} ${styles.btnSecondary} ${styles.copyBtn} ${
+                          copiedUrl === asset.url ? styles.copyBtnCopied : ""
+                        }`}
                         type="button"
                         onClick={() => void copyUrl(asset.url)}
+                        aria-label={copiedUrl === asset.url ? "URL copied" : `Copy URL for ${asset.path}`}
                       >
-                        Copy URL
+                        <span className={styles.copyBtnLabel} aria-hidden={copiedUrl === asset.url}>
+                          Copy URL
+                        </span>
+                        <span
+                          className={`${styles.copyBtnLabel} ${styles.copyBtnSuccess}`}
+                          aria-hidden={copiedUrl !== asset.url}
+                        >
+                          <svg className={styles.copyCheck} viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                            <path
+                              d="M3.5 8.25 6.5 11.25 12.5 4.75"
+                              stroke="currentColor"
+                              strokeWidth="1.5"
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                            />
+                          </svg>
+                          Copied
+                        </span>
                       </button>
                     </td>
                   </tr>
