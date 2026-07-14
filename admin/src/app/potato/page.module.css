@@ -294,10 +294,42 @@
   background: var(--gray-alpha-200);
 }
 
+.table th:first-child,
+.table td:first-child,
 .table th:last-child,
 .table td:last-child {
   width: 1%;
   white-space: nowrap;
+}
+
+.thumbCell {
+  padding-right: 4px;
+}
+
+.thumbLink {
+  display: block;
+  line-height: 0;
+}
+
+.thumb {
+  display: block;
+  width: 40px;
+  height: 40px;
+  object-fit: cover;
+  border-radius: 6px;
+  border: 1px solid var(--gray-alpha-400);
+  background: var(--background-200);
+}
+
+.thumbPlaceholder {
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 6px;
+  border: 1px dashed var(--gray-alpha-400);
+  color: var(--gray-900);
+  font-size: 12px;
 }
 
 .copyBtn {

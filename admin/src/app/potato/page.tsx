@@ -20,6 +20,12 @@ type DashboardData = {
   tags: string[];
 };
 
+const PREVIEW_IMAGE_EXT = /\.(avif|ico|jpe?g|png|svg|webp)$/i;
+
+function isPreviewableImage(path: string): boolean {
+  return PREVIEW_IMAGE_EXT.test(path);
+}
+
 function nextVersion(tags: string[]): string {
   const semverTags = tags
     .filter((t) => /^v\d+\.\d+\.\d+$/.test(t))
@@ -353,6 +359,7 @@ export default function PotatoAdminPage() {
             <table className={styles.table}>
               <thead>
                 <tr>
+                  <th aria-label="Preview" />
                   <th>Alias</th>
                   <th>Path</th>
                   <th>URL</th>
@@ -362,6 +369,25 @@ export default function PotatoAdminPage() {
               <tbody>
                 {filteredAssets.map((asset) => (
                   <tr key={asset.key}>
+                    <td className={styles.thumbCell}>
+                      {isPreviewableImage(asset.path) ? (
+                        <a href={asset.url} target="_blank" rel="noreferrer" className={styles.thumbLink}>
+                          <img
+                            className={styles.thumb}
+                            src={asset.url}
+                            alt=""
+                            width={40}
+                            height={40}
+                            loading="lazy"
+                            decoding="async"
+                          />
+                        </a>
+                      ) : (
+                        <span className={styles.thumbPlaceholder} aria-hidden="true">
+                          —
+                        </span>
+                      )}
+                    </td>
                     <td className={styles.mono}>{asset.key}</td>
                     <td className={styles.mono}>{asset.path}</td>
                     <td>
