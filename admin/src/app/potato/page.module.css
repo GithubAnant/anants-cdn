@@ -294,6 +294,16 @@
   background: var(--gray-alpha-200);
 }
 
+.table th:last-child,
+.table td:last-child {
+  width: 1%;
+  white-space: nowrap;
+}
+
+.copyBtn {
+  white-space: nowrap;
+}
+
 .mono {
   font-family: var(--font-mono);
   font-size: 12px;

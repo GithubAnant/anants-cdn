@@ -372,7 +372,7 @@ export default function PotatoAdminPage() {
                     </td>
                     <td>
                       <button
-                        className={`${styles.btn} ${styles.btnSecondary}`}
+                        className={`${styles.btn} ${styles.btnSecondary} ${styles.copyBtn}`}
                         type="button"
                         onClick={() => void copyUrl(asset.url)}
                       >
